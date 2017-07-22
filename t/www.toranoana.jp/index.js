@@ -31,4 +31,4 @@ Toranoana.prototype.transformQuery = function (_params) {
   }, q, params)
 }
 
-Toranoana.prototype.scraper = require('scraper')
+Toranoana.prototype.scraper = require('./scraper')
