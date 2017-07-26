@@ -60,7 +60,7 @@ Service.prototype.request = function (qstr, requestOpt) {
   return t
 
   function retryIf (err) {
-    return String(err.statusCode.slice(0, 1)) === '5'
+    return /ENOTFOUND/.test(String(err))
   }
 
   function onResponse (err, res) {
