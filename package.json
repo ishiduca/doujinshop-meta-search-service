@@ -1,6 +1,6 @@
 {
   "name": "doujinshop-meta-search-service",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "service.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "example.js",
     "package.json",
     "schema-config.json",
-    "schema-params,json",
+    "schema-params.json",
     "schema-results.json",
     "service.js",
     "test.js"
