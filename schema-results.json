@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "required": true,
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "uri": {
+      "type": "string",
+      "required": true,
+      "format": "uri"
+    },
+    "thumbnail": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "required": true,
+          "format": "uri"
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "href": {
+            "type": "string",
+            "required": true,
+            "format": "uri"
+          }
+        }
+      }
+    }
+  }
+}

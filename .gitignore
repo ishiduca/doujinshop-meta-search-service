@@ -2,4 +2,6 @@
 *node_modules
 *npm-debug.log
 *bundle.js
+*package-lock.json
 t/*.html
+result.html

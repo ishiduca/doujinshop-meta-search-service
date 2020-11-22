@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+var _default = { category: 'mak' }
+var alias = { c: 'category' }
+var defaultOpts = { 'default': _default, alias }
+var argv = require('minimist')(process.argv.slice(2), defaultOpts)
+var yo = require('yo-yo')
+var EcToranoanaJp = require('../example')
+var { pipe, concat, through } = require('mississippi')
+var value = argv._.join(' ')
+var category = argv.category
+var client = new EcToranoanaJp()
+var dup = client.createDuplex()
+
+pipe(
+  dup,
+  through.obj((x, _, done) => done(null, article(x))),
+  concat(articles => {
+    console.log(String(yo`<main>${articles}</main>`))
+  }),
+  error => error && console.error(error)
+)
+
+dup.end({ category, value })
+
+function article ({ uri, title, thumbnail, links }) {
+  return yo`<article>
+  <section>
+    <p>
+     <cite>${link(uri, title)}</cite>
+    </p>
+    <figure>
+      ${link(uri, img(thumbnail))}
+    </figure>
+  </section>
+  <aside>
+    <ul>
+      ${links.map(l => yo`<li>${link(l.href, l.title)}</li>`)}
+    </ul>
+  </aside>
+</article>`
+}
+
+function link (href, content) {
+  return yo`<a href=${href} target="_blank">${content}</a>`
+}
+
+function img ({ src }) { return yo`<img src=${src} />` }
